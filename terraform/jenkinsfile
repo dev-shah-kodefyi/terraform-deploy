@@ -4,7 +4,7 @@ node {
 
      
   stage('Git-Checkout') {
-   git 'https://https://github.com/devops311/terraform-deploy.git'
+   git 'https://github.com/devops311/terraform-deploy.git'
   }
     
  def project_path="/root/.jenkins/workspace/qa-pipeline/quality-assurence/warstorage"
