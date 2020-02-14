@@ -18,7 +18,7 @@ node {
    
  }
 
-def project_terra="~/root/.jenkins/workspace/production-deployment/terraform/ansible-file"
+def project_terra="/root/.jenkins/workspace/production-deployment/terraform/ansible-file"
 dir(project_terra) {
    stage('Prod Deployment on AWS'){
    sh label: 'terraform', script: '/bin/terraform  init'
