@@ -7,13 +7,13 @@ node {
    git 'https://github.com/devops311/terraform-deploy.git'
   }
     
- def project_path="/root/.jenkins/workspace/qa-pipeline/quality-assurence/warstorage"
+ def project_path="/root/.jenkins/workspace/qa-pipeline/quality-assurence"
  
  dir(project_path) {
     
  
   stage('Geting Ready For Ansible') {
-  sh label: 'Docker', script: 'cp -rf target/*.war ../../../production-deployment/terraform-deploy/terraform/ansiblefile/ansible/04-Tomcat/templates/'
+  sh label: 'Docker', script: 'cp -rf warstorage/*.war ../../../production-deployment/terraform-deploy/terraform/ansiblefile/ansible/04-Tomcat/templates/'
   sh label: 'Jenkins', script: "echo '<h1> TASK BUILD ID: ${env.BUILD_DISPLAY_NAME}</h1>' > ../../../production-deployment/terraform-deploy/terraform/ansiblefile/ansible/04-Tomcat/templates/apps/index.html"
 }  
    
