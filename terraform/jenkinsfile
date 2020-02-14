@@ -13,13 +13,12 @@ node {
     
  
   stage('Geting Ready For Ansible') {
-  sh label: 'Docker', script: 'cp -rf warstorage/*.war ../../../production-deployment/terraform-deploy/terraform/ansiblefile/ansible/04-Tomcat/templates/'
-  sh label: 'Jenkins', script: "echo '<h1> TASK BUILD ID: ${env.BUILD_DISPLAY_NAME}</h1>' > ../../../production-deployment/terraform-deploy/terraform/ansiblefile/ansible/04-Tomcat/templates/apps/index.html"
-}  
+  sh label: 'Docker', script: 'cp -rf warstorage/*.war /root/.jenkins/workspace/production-deployment/terraform/ansible-file/ansible/04-Tomcat/templates'
+ }  
    
  }
 
-def project_terra="terraform-deploy/terraform/ansible"
+def project_terra="~/root/.jenkins/workspace/production-deployment/terraform/ansible-file"
 dir(project_terra) {
    stage('Prod Deployment on AWS'){
    sh label: 'terraform', script: '/bin/terraform  init'
