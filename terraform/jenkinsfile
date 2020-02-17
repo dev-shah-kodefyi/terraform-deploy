@@ -7,13 +7,32 @@ node {
    git 'https://github.com/devops311/terraform-deploy.git'
   }
     
- def project_path="/root/.jenkins/workspace/qa-pipeline/quality-assurence"
+ def project_path="terraform"
  
  dir(project_path) {
+ stage('Creating a folder to store artifacts'){
+    sh label: '',script: "mkdir -p warstorageprod"
+    
+    }
+    
+ stage(' Downloading Jar From Artifactory Locally'){
+    def server= Artifactory.server 'Artifactory'
+    def downloadSpec = """{
+    "files": [
+    {
+      "pattern": "userproject/*.war",
+      "target": "/root/.jenkins/workspace/production-deployment/terraform/warstorageprod/"
+      
+    }
+    ]
+    }"""
+    server.download(downloadSpec)
+   
+}
     
  
   stage('Geting Ready For Ansible') {
-  sh label: 'Docker', script: 'cp -rf warstorage/*.war /root/.jenkins/workspace/production-deployment/terraform/ansible-file/ansible/04-Tomcat/templates'
+  sh label: 'Docker', script: 'cp -rf warstorageprod/*.war /root/.jenkins/workspace/production-deployment/terraform/ansible-file/ansible/04-Tomcat/templates'
  }  
    
  }
