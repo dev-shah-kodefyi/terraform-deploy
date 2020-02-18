@@ -31,7 +31,7 @@
   - name: Remove ROOT folder initially
     command: rm -rf /opt/SP/apps/tomcat/webapps/ROOT
 
-  - name: Copy Bikes Project War File
+  - name: Copy  Project War File
     copy: src=templates/userproject-0.0.1-SNAPSHOT.war dest=/opt/SP/apps/tomcat/webapps/ROOT.war mode=0644
 
   handlers:
